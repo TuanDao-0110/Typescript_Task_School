@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "lite-server"
+    "build": "webpack",
+    "start": "webpack-dev-server"
   },
   "keywords": [
     "typescript",
@@ -16,6 +17,10 @@
   "author": "Santosh Kalwar",
   "license": "MIT",
   "devDependencies": {
-    "lite-server": "^2.5.4"
+    "ts-loader": "^9.4.2",
+    "typescript": "^4.9.5",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
   }
 }

@@ -1,5 +1,5 @@
-import { Project } from "../models/project-model.js";
-import { ProjectStatus } from "../models/project-model.js";
+import { Project } from "../models/project-model";
+import { ProjectStatus } from "../models/project-model";
 export class State {
     constructor() {
         this.listeners = [];

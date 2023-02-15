@@ -1,33 +1,37 @@
 import React, { useRef, useState } from "react";
 import { todoProp } from "../todo.model";
+
 const TodoList: React.FC<todoProp> = (props) => {
-  const [editing, setEditing] = useState<boolean>(false);
+  const [editingItemId, setEditingItemId] = useState<string | null>(null);
   const newValueRef = useRef<HTMLInputElement>(null);
+
+  const handleEditClick = (id: string) => {
+    setEditingItemId(id);
+  };
+
+  const handleDoneClick = (id: string) => {
+    if (newValueRef.current?.value.trim().length === 0) {
+      return;
+    }
+    props.toDoEdit(id, newValueRef.current!.value);
+    setEditingItemId(null);
+  };
+
   return (
     <ul>
       {props.items.map((todo, index) => {
         return (
           <li key={todo.id}>
-            {editing ? (
+            {editingItemId === todo.id ? (
               <>
                 <input type="text" defaultValue={todo.text} ref={newValueRef} required />{" "}
-                <button
-                  onClick={() => {
-                    if (newValueRef.current?.value.trim().length === 0) {
-                    } else {
-                      props.toDoEdit(todo.id, newValueRef.current!.value);
-                      setEditing(false);
-                    }
-                  }}
-                >
-                  Done
-                </button>
+                <button onClick={() => handleDoneClick(todo.id)}>Done</button>
               </>
             ) : (
               <span>{todo.text}</span>
             )}
             <button onClick={props.onDelete.bind(null, todo.id)}>Delete</button>
-            {editing ? "" : <button onClick={setEditing.bind(null, true)}>Edit</button>}
+            {editingItemId === todo.id ? "" : <button onClick={() => handleEditClick(todo.id)}>Edit</button>}
           </li>
         );
       })}

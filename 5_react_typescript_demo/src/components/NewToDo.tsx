@@ -8,6 +8,7 @@ const NewToDo: React.FC<NewToDoProps> = (props) => {
     e.preventDefault();
     const enteredText = textInputRef.current!.value;
     if (enteredText.trim().length === 0) {
+      textInputRef.current!.value = "";
     } else {
       props.onAddTodo(enteredText);
       textInputRef.current!.value = "";

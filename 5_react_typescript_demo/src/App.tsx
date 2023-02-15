@@ -17,10 +17,15 @@ const App: React.FC = () => {
   };
   // edit
   const toDoEdit = (id: string, newText: string) => {
-    let index = toDos.findIndex((todo) => todo.id === id);
-    let temp = [...toDos];
-    temp[index].text = newText;
-    setToDos([...temp]);
+  setToDos((prev) =>
+    prev.map((toDo) => {
+      if (toDo.id === id) {
+        return { ...toDo, text: newText };
+      } else {
+        return toDo;
+      }
+    })
+  );
   };
   return (
     <div className="App">

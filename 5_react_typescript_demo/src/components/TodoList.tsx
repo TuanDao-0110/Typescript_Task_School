@@ -13,7 +13,6 @@ const TodoList: React.FC<todoProp> = (props) => {
                 <input type="text" defaultValue={todo.text} ref={newValueRef} required />{" "}
                 <button
                   onClick={() => {
-                    console.log(newValueRef.current?.value.trim().length);
                     if (newValueRef.current?.value.trim().length === 0) {
                     } else {
                       props.toDoEdit(todo.id, newValueRef.current!.value);

@@ -7,8 +7,11 @@ const NewToDo: React.FC<NewToDoProps> = (props) => {
   const toDoSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     const enteredText = textInputRef.current!.value;
-    props.onAddTodo(enteredText);
-    textInputRef.current!.value =''
+    if (enteredText.trim().length === 0) {
+    } else {
+      props.onAddTodo(enteredText);
+      textInputRef.current!.value = "";
+    }
   };
   return (
     <form onSubmit={toDoSubmitHandler}>

@@ -13,8 +13,12 @@ const TodoList: React.FC<todoProp> = (props) => {
                 <input type="text" defaultValue={todo.text} ref={newValueRef} required />{" "}
                 <button
                   onClick={() => {
-                    props.toDoEdit(todo.id, newValueRef.current!.value);
-                    setEditing(false);
+                    console.log(newValueRef.current?.value.trim().length);
+                    if (newValueRef.current?.value.trim().length === 0) {
+                    } else {
+                      props.toDoEdit(todo.id, newValueRef.current!.value);
+                      setEditing(false);
+                    }
                   }}
                 >
                   Done
@@ -23,12 +27,7 @@ const TodoList: React.FC<todoProp> = (props) => {
             ) : (
               <span>{todo.text}</span>
             )}
-            <button
-              // onClick={() => props.onDelete(todo.id)}
-              onClick={props.onDelete.bind(null, todo.id)}
-            >
-              Delete
-            </button>
+            <button onClick={props.onDelete.bind(null, todo.id)}>Delete</button>
             {editing ? "" : <button onClick={setEditing.bind(null, true)}>Edit</button>}
           </li>
         );

@@ -13,7 +13,6 @@ type GOOGLECODINGRESONSE = {
 const searchLocation = (e: Event) => {
   e.preventDefault();
   const enterAddress = inputElement.value;
-  console.log(enterAddress);
   const BASE_URL = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURI(enterAddress)}en&key=${GOOGLE_KEY}`;
   axios
     .get<GOOGLECODINGRESONSE>(

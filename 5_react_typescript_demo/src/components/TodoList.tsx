@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { todoProp } from "../todo.model";
 
 const TodoList: React.FC<todoProp> = (props) => {
@@ -17,23 +17,20 @@ const TodoList: React.FC<todoProp> = (props) => {
     setEditingItemId(null);
   };
 
+
   return (
     <ul>
       {props.items.map((todo, index) => {
-
         return (
           <li key={todo.id}>
-            {
-              editingItemId === todo.id
-           ? (
-                <>
-                  <input type="text" defaultValue={todo.text} ref={newValueRef} required />{" "}
-                  <button onClick={() => handleDoneClick(todo.id)}>Done</button>
-                </>
-              ) : (
-                <span>{todo.text}</span>
-              )
-            }
+            {editingItemId === todo.id ? (
+              <>
+                <input type="text" defaultValue={todo.text} ref={newValueRef} required />{" "}
+                <button onClick={() => handleDoneClick(todo.id)}>Done</button>
+              </>
+            ) : (
+              <span>{todo.text}</span>
+            )}
             <button onClick={props.onDelete.bind(null, todo.id)}>Delete</button>
             {editingItemId === todo.id ? "" : <button onClick={() => handleEditClick(todo.id)}>Edit</button>}
           </li>

@@ -4,4 +4,4 @@
 3. [x] Drag vs Drop project manager with Typescript using ES5
 4. [x] Google location render, using webpack
 5. [x] To do list project with React TS
-6. 
+6. [x] To App project backend with Express 
